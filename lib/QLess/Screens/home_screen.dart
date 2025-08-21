@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-// ✅ Add this import to include your profile page
-import 'profile_page.dart'; // Change this path if needed
+import 'profile_page.dart';
 
 void main() {
   runApp(const MyApp());
