@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:q_less/QLess/Screens/home_screen.dart';
+import 'package:q_less/QLess/Screens/edit_profile_page.dart'; // Import your edit page
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -22,8 +23,15 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  void navigateToEditProfile(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const EditProfilePage()),
+    );
+  }
+
   void navigateToSettings(BuildContext context) {
-    // Navigate to settings page (if needed)
+    // You can implement this later
   }
 
   Widget buildIconButton({
@@ -112,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Add edit profile action
+                  navigateToEditProfile(context); // Navigate to edit page
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
@@ -126,7 +134,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
 
-      // Bottom Navigation Bar (Same as HomePage)
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
