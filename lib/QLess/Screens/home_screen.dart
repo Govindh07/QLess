@@ -1,32 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:q_less/QLess/Screens/profile_page.dart';
+import 'package:q_less/QLess/Screens/profile_settings.dart';
+import 'package:q_less/QLess/Screens/qr_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'profile_page.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: Colors.black),
-          bodyMedium: TextStyle(color: Colors.black),
-        ),
-      ),
-      home: const HomePage(),
-    );
-  }
-}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -78,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToProfile(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ProfilePage()),
+      MaterialPageRoute(builder: (context) =>  ProfilePage()),
     );
   }
 
@@ -141,9 +122,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
+    return Scaffold(backgroundColor: Colors.white,
+      body: Scaffold(backgroundColor: Colors.white,
+        body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
@@ -151,9 +132,9 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => navigateToProfile(context),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage())),
                     child: const CircleAvatar(
-                      backgroundColor: Colors.black12,
+                      backgroundColor: Colors.white,
                       child: Icon(Icons.person, color: Colors.black, size: 30),
                     ),
                   ),
@@ -287,13 +268,13 @@ class _HomePageState extends State<HomePage> {
               buildIconButton(
                 icon: Icons.home,
                 index: 0,
-                onPressed: () => onTapPlaceholder("Home"),
+                onPressed: () => HomePage(),
               ),
               const SizedBox(width: 20),
               buildIconButton(
                 icon: Icons.settings,
                 index: 1,
-                onPressed: () => navigateToSettings(context),
+                onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context)=>ProfileSettingsPage())),
               ),
             ],
           ),
@@ -306,9 +287,11 @@ class _HomePageState extends State<HomePage> {
         child: FloatingActionButton(
           elevation: 6,
           backgroundColor: Colors.black,
-          onPressed: () => onTapPlaceholder("Scan"),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>QrBillingScreen()));
+          },
           shape: const CircleBorder(),
-          child: const Icon(Icons.qr_code_scanner, color: Colors.white, size: 40),
+          child: const Icon(Icons.qr_code_scanner, color: Colors.red, size: 40),
         ),
       ),
     );
@@ -328,7 +311,7 @@ class WalletPage extends StatelessWidget {
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => Scaffold(backgroundColor: Colors.white,
     appBar: AppBar(title: const Text('History'), backgroundColor: Colors.white),
     body: const Center(child: Text('This is the History Page')),
   );
@@ -338,7 +321,7 @@ class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Settings'), backgroundColor: Colors.white),
-    body: const Center(child: Text('This is the Settings Page')),
-  );
+      appBar: AppBar(title: const Text('Settings'), backgroundColor: Colors.white),
+      body: const Center(child: Text('This is the Settings Page')),
+      );
 }
