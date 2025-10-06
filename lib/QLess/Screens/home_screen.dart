@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:q_less/QLess/Screens/payment_history.dart';
 import 'package:q_less/QLess/Screens/profile_page.dart';
 import 'package:q_less/QLess/Screens/profile_settings.dart';
 import 'package:q_less/QLess/Screens/qr_screen.dart';
+import 'package:q_less/QLess/Screens/wallet_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
-
-
+void main() {
+  runApp(MaterialApp(debugShowCheckedModeBanner: false,home: HomePage(),));
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -77,7 +79,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToHistory(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const HistoryPage()),
+      MaterialPageRoute(builder: (context) => const PaymentHistoryPage()),
     ).then((_) {
       setState(() {
         _selectedIndex = 0;
@@ -88,7 +90,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToSettings(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SettingsPage()),
+      MaterialPageRoute(builder: (context) => const ProfileSettingsPage()),
     ).then((_) {
       setState(() {
         _selectedIndex = 0;
@@ -296,32 +298,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
-
-// Dummy pages (leave unchanged or replace with real ones)
-class WalletPage extends StatelessWidget {
-  const WalletPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Qless Wallet'), backgroundColor: Colors.white),
-    body: const Center(child: Text('This is the Qless Wallet Page')),
-  );
-}
-
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(backgroundColor: Colors.white,
-    appBar: AppBar(title: const Text('History'), backgroundColor: Colors.white),
-    body: const Center(child: Text('This is the History Page')),
-  );
-}
-
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: const Text('Settings'), backgroundColor: Colors.white),
-      body: const Center(child: Text('This is the Settings Page')),
-      );
 }
